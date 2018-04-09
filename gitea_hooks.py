@@ -10,7 +10,7 @@ gitea_route = Blueprint('simple_page', __name__,
 gitea_route = Blueprint('gitea_route', __name__)
 
 @gitea_route.route('/gitea')
-def gitea(page):
+def gitea():
     """Endpoint for receiving gitea webhooks."""
     if request.method == "POST":
         data = request.get_json()

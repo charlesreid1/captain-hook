@@ -11,7 +11,7 @@ Also see
 github_route = Blueprint('github_route', __name__)
 
 @github_route.route('/github')
-def github(page):
+def github():
     """Endpoint for receiving github webhooks."""
     if request.method == "POST":
         data = request.get_json()
