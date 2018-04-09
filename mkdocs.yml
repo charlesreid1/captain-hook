@@ -1,0 +1,9 @@
+site_name: Captain Hook
+docs_dir: docs
+site_dir: site
+pages:
+  - 'How It Works': 'howitworks.md'
+  - 'Installing':   'installing.md'
+  - 'Running':      'running.md'
+  - 'The Many Hooks of Captain Hook': 'hooks.md'
+
