@@ -20,4 +20,3 @@ See [running](/docs/running.md).
 # The Many Hooks of Captain Hook
 
 See [hooks](/docs/hooks.md).
-
