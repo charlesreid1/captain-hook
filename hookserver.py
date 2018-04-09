@@ -1,4 +1,4 @@
-from .config import BIND_IP, BIND_ADDR, BIND_PORT
+from config import BIND_IP, BIND_ADDR, BIND_PORT
 from os import environ
 from flask import Flask, request
 
@@ -14,14 +14,12 @@ define webhooks in a modular way.
 """
 
 
-app = Flask(__name__, 
-            static_folder
-            host=BIND_ADDR, 
-            port=BIND_PORT)
+app = Flask(__name__,
+            static_folder="static")
 
 def display_intro():
     """Helper method to display introduction message."""
-    message = "Webhook server online! Go to http://%s:%s"%(BIND_HOST,BIND_PORT)
+    message = "Webhook server online! Go to http://%s:%s"%(BIND_IP,BIND_PORT)
     print(message)
 
 def display_html(request):
@@ -35,9 +33,17 @@ def display_html(request):
     """
     url_root = request.url_root
     return "".join([
-        """<h2>Hello World</h2>"""
-        """<p>This is Captain Hook. You can configure webhooks """
-        """by setting the endpoint to http://%s:%s/webhook"""%(HOST_IP,HOST_PORT)
+        """<html>""",
+        """<head>""",
+        """<title>bluebeard hook server</title>""",
+        """<link rel="stylesheet" href="static/bootstrap.min.css" type="text/css" />""",
+        """</head><body>""",
+        """<div class="container"><div class="row">""",
+        """<h2>Hello World</h2>""",
+        """<p>This is Captain Hook the webhook server.</p>""",
+        """<p>You can configure webhooks by setting the endpoint to <code>http://%s:%s/webhook</code>"""%(BIND_IP,BIND_PORT),
+        """</div></div>""",
+        """</body></html>"""
     ])
 
 @app.route("/", methods=["GET"])
@@ -47,13 +53,24 @@ def index():
 
 # These imports must go after the helper methods above
 
-from github_hooks import github_route
-app.register_blueprints(github_route)
+#from github_hooks import github_route
+#app.register_blueprint(github_route)
+#
+#from gitea_hooks import gitea_route
+#app.register_blueprint(gitea_route)
 
-from gitea_hooks import gitea_route
-app.register_blueprints(gitea_route)
+@app.route("/webhook", methods=["GET","POST"])
+def tracking():
+    if request.method == "POST":
+        data = request.get_json()
+        print("Webhook received!")
+        print(data)
+        return "OK"
+    else:
+        return display_html(request)
+
 
 if __name__ == "__main__":
     display_intro()
-    app.run()
-
+    app.run( host = BIND_ADDR, 
+             port = BIND_PORT)
