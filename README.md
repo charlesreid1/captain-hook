@@ -1,10 +1,8 @@
 # b-captain-hook
 
-Captain Hook is a flask web server that listens for webhooks
-and performs actions with them.
+Captain Hook is a flask web server that listens for webhooks.
 
-It can be set up with webhooks from Gitea, Github, Dockerhub,
-and other services.
+It can be set up with webhooks from Gitea, Github, Dockerhub, and other services.
 
 Captain Hook runs on #blackbeard.
 
