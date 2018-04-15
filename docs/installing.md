@@ -26,8 +26,8 @@ Now install required software:
 $ pip install -r requirements.txt
 ```
 
+Next, see [running.md](/docs/running.md).
+
 Captain Hook itself is an executable script 
 so it does not need to be installed.
-It runs a server so it should be run as a 
-system service.
 
