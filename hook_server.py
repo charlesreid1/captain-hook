@@ -1,4 +1,4 @@
-from config import BIND_IP, BIND_ADDR, BIND_PORT
+from config import IP, BIND_ADDR, BIND_PORT
 from os import environ
 from flask import Flask, request
 
@@ -19,7 +19,7 @@ app = Flask(__name__,
 
 def display_intro():
     """Helper method to display introduction message."""
-    message = "Webhook server online! Go to http://%s:%s"%(BIND_IP,BIND_PORT)
+    message = "Webhook server online! Go to http://%s:%s"%(IP,BIND_PORT)
     print(message)
 
 def display_html(request):
@@ -41,7 +41,7 @@ def display_html(request):
         """<div class="container"><div class="row">""",
         """<h2>Hello World</h2>""",
         """<p>This is Captain Hook the webhook server.</p>""",
-        """<p>You can configure webhooks by setting the endpoint to <code>http://%s:%s/webhook</code>"""%(BIND_IP,BIND_PORT),
+        """<p>You can configure webhooks by setting the endpoint to <code>http://%s:%s/webhook</code>"""%(IP,BIND_PORT),
         """</div></div>""",
         """</body></html>"""
     ])
